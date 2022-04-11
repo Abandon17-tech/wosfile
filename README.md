@@ -8,11 +8,7 @@
 ## Examples
 
 These examples use a dataset exported from Web of Science in multiple separate files(the maximum number of exported records per file is 500).
-Put the raw files exported from wos into the raw_data folder
-
-### Citation network
-
-For this example you will need the [NetworkX](http://networkx.github.io/) package. The data must be exported as ‘Full Record and Cited References’.
+Put the raw files exported from wos into the raw_data folder, which must be exported as ‘Full Record and Cited References’.
 
 ```python
 import os
