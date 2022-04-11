@@ -14,7 +14,6 @@ Put the raw files exported from wos into the raw_data folder, which must be expo
 import os
 import Paper
 
-input_file = "data/download.txt"
 out_file = "result/Papers.xlsx"
 
 if __name__ == '__main__':
