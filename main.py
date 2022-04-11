@@ -1,23 +1,18 @@
 import glob
+import os
+
 import wosfile
 from collections import Counter
+import Paper
 
-subject_cats = Counter()
-# Create a list of all relevant files. Our folder may contain multiple export files.
-files = glob.glob("data/download_1-500.txt")
+input_file = "data/download.txt"
+out_file = "result/Papers.xlsx"
 
-# wosfile will read each file in the list in turn and yield each record
-# for further handling
-i = 0
-for rec in wosfile.records_from(files):
-    # Records are very thin wrappers around a standard Python dict,
-    # whose keys are the WoS field tags.
-    # Here we look at the SC field (subject categories) and update our counter
-    # with the categories in each record.
-    # subject_cats.update(rec.get("UT"))
-    print(rec['UT'])
-    i += 1
+if __name__ == '__main__':
+    filedir = os.getcwd() + '/raw_data'
+    filenames = os.listdir(filedir)
 
-print(i)
-# Show the five most common subject categories in the data and their number.
-# print(subject_cats.most_common(5))
+    for filename in filenames:
+        filepath = filedir + '/' + filename
+        paper_list = Paper.read_paper(filepath)
+        Paper.write_excel_file(out_file, paper_list)

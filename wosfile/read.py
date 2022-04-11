@@ -58,7 +58,7 @@ def sniff_encoding(fh: BinaryIO) -> str:
     sniff = sniff_file(fh)
 
     # WoS files typically include a BOM, which we want to strip from the actual
-    # data. The encodings 'utf-8-sig' and 'utf-16' do this for UTF-8 and UTF-16
+    # raw_data. The encodings 'utf-8-sig' and 'utf-16' do this for UTF-8 and UTF-16
     # respectively. When dealing with files with BOM, avoid the encodings
     # 'utf-8' (which is fine for non-BOM UTF-8), 'utf-16-le', and 'utf-16-be'.
     # See e.g. http://stackoverflow.com/a/8827604

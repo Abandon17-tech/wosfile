@@ -29,7 +29,7 @@ from collections import Counter
 
 subject_cats = Counter()
 # Create a list of all relevant files. Our folder may contain multiple export files.
-files = glob.glob("data/savedrecs*.txt")
+files = glob.glob("raw_data/savedrecs*.txt")
 
 # wosfile will read each file in the list in turn and yield each record
 # for further handling
@@ -40,7 +40,7 @@ for rec in wosfile.records_from(files):
     # with the categories in each record.
     subject_cats.update(rec.get("SC"))
 
-# Show the five most common subject categories in the data and their number.
+# Show the five most common subject categories in the raw_data and their number.
 print(subject_cats.most_common(5))
 ```
 
@@ -65,8 +65,8 @@ for rec in wosfile.records_from(files):
     for reference in rec.get("CR", []):
         G.add_edge(rec.record_id, reference)
 
-# At this point, our network also contains all references that were not in the original data.
-# The line below ensures that we only retain publications from the original data set.
+# At this point, our network also contains all references that were not in the original raw_data.
+# The line below ensures that we only retain publications from the original raw_data set.
 G.remove_nodes_from(set(G) - nodes_in_data)
 # Show some basic statistics and save as Pajek file for visualization and/or further analysis.
 print(nx.info(G))
